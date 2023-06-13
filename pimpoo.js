@@ -8,6 +8,7 @@ class Trip {
         this.start = start
         this.duration = duration
         this.price = price
+        this.end = parseInt(start) + parseInt(duration)
     }
 }
 
@@ -51,3 +52,37 @@ function parseTrips (trips) {
 
 
 ////// Étape 3 - End trip
+// ajout de la proprité suivante, directement dans la class :
+// this.end = parseInt(start) + parseInt(duration)
+
+// console.log("etape 3", parseTrips(tripsToParse))
+// > Résultat console : [
+// Trip {
+//     name: 'Roger',
+//     start: '0',
+//     duration: '5',
+//     price: '10',
+//     end: 5
+//   },
+//   Trip {
+//     name: 'Pongo',
+//     start: '3',
+//     duration: '7',
+//     price: '14',
+//     end: 10
+//   },
+//   Trip {
+//     name: 'Perdita',
+//     start: '8',
+//     duration: '10',
+//     price: '8',
+//     end: 18
+//   },
+//   Trip {
+//     name: 'Anita',
+//     start: '16',
+//     duration: '3',
+//     price: '7',
+//     end: 19
+//   }
+// ]
