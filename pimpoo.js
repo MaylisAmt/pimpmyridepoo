@@ -5,12 +5,22 @@ class Trip {
 
     constructor(name, start, duration, price) {
         this.name = name
-        this.start = start
-        this.duration = duration
-        this.price = price
+        this.start = parseInt(start)
+        this.duration = parseInt(duration)
+        this.price = parseInt(price)
         this.end = parseInt(start) + parseInt(duration)
     }
+
+    	isCompatible(trip) {
+		if (trip.end <= this.start) {
+			return true
+		} else {
+			return false
+		}
+	}
 }
+
+
 
 // FONCTION QUI TRANSFORME LES DONNÉES D'UN CLIENT EN 1 INSTANCE DE "Trip"
 function parseTrip (trip) {
@@ -34,13 +44,14 @@ let tripsToParse = [
 
 
 // FONCTION QUI TRANSFORME LES DONNÉES DE PLUSIEURS CLIENTS EN PLUSIEURS INSTANCES DE "Trip"
-function parseTrips (trips) {
+function parseTrips(trips) {
     let tableau = []
     for (let i=0; i<trips.length; i++) {
         tableau.push((parseTrip(trips[i])))
     }
     return tableau
 }
+
 
 // console.log("etape 2", parseTrips(tripsToParse))
 // > Résultat console : [
@@ -86,3 +97,15 @@ function parseTrips (trips) {
 //     end: 19
 //   }
 // ]
+
+
+////// Étape 4 - Compatibility
+// Ajout de 2 instances et test de compatibilité entre ces 2 instances
+
+let voyage1 = parseTrip("Roger 0 5 10")
+let voyage2 = parseTrip("Perdita 8 10 8")
+
+// console.log(voyage1.end)
+// console.log(voyage2.start)
+// console.log(voyage1.isCompatible(voyage2))
+// réponse console : False
