@@ -52,6 +52,7 @@ function parseTrips(trips) {
     return tableau
 }
 
+let lesVoyageurs = parseTrips(tripsToParse)
 
 // console.log("etape 2", parseTrips(tripsToParse))
 // > Résultat console : [
@@ -109,3 +110,41 @@ let voyage2 = parseTrip("Perdita 8 10 8")
 // console.log(voyage2.start)
 // console.log(voyage1.isCompatible(voyage2))
 // réponse console : False
+
+
+////// Étape 5 - Possibilities
+
+function findCompatibilities (trips) {
+    let checkOK = []
+    for (let i=0; i<trips.length; i++) {
+        for (let j=0; j<trips.length; j++) {
+            if (trips[i]==trips[j]) {
+                checkOK.push(trips[i])
+            }
+            if (trips[i].isCompatible(trips[j]) == true) {
+                checkOK.push([trips[i], trips[j]])
+            }
+        }
+    }
+    return checkOK
+}
+console.log(findCompatibilities(lesVoyageurs))
+// Réponse console : 
+// [
+//     Trip { name: 'Roger', start: 0, duration: 5, price: 10, end: 5 },
+//     Trip { name: 'Pongo', start: 3, duration: 7, price: 14, end: 10 },
+//     [
+//       Trip { name: 'Perdita', start: 8, duration: 10, price: 8, end: 18 },
+//       Trip { name: 'Roger', start: 0, duration: 5, price: 10, end: 5 }
+//     ],
+//     Trip { name: 'Perdita', start: 8, duration: 10, price: 8, end: 18 },
+//     [
+//       Trip { name: 'Anita', start: 16, duration: 3, price: 7, end: 19 },
+//       Trip { name: 'Roger', start: 0, duration: 5, price: 10, end: 5 }
+//     ],
+//     [
+//       Trip { name: 'Anita', start: 16, duration: 3, price: 7, end: 19 },
+//       Trip { name: 'Pongo', start: 3, duration: 7, price: 14, end: 10 }
+//     ],
+//     Trip { name: 'Anita', start: 16, duration: 3, price: 7, end: 19 }
+//   ]
